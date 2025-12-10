@@ -1,0 +1,60 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Colors */
+  --bg-primary: #0a0a1f;
+  --bg-secondary: #12123a;
+  --bg-tertiary: #1a1a4a;
+
+  /* Tetromino Colors */
+  --tetro-i: #00f0f0; /* Cyan */
+  --tetro-o: #f0f000; /* Yellow */
+  --tetro-t: #a000f0; /* Purple */
+  --tetro-s: #00f000; /* Green */
+  --tetro-z: #f00000; /* Red */
+  --tetro-j: #0000f0; /* Blue */
+  --tetro-l: #f0a000; /* Orange */
+
+  /* UI Colors */
+  --primary: #6366f1;
+  --primary-glow: rgba(99, 102, 241, 0.4);
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0c0;
+  --border: rgba(255, 255, 255, 0.1);
+  --shadow: rgba(0, 0, 0, 0.5);
+
+  /* Gradients */
+  --gradient-bg: linear-gradient(135deg, #0a0a1f 0%, #1a1a4a 100%);
+  --gradient-card: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+}
+
+body {
+  background: var(--gradient-bg);
+  color: var(--text-primary);
+  min-height: 100vh;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #7c3aed;
+}
