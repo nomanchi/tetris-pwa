@@ -132,6 +132,38 @@ const SidePanel = styled.div`
   }
 `;
 
+const MobileGameControls = styled.div`
+  display: none;
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+`;
+
+const MobileButton = styled.button`
+  padding: 8px 12px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.3) 0%, rgba(168, 85, 247, 0.3) 100%);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  white-space: nowrap;
+
+  &:active {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.6) 0%, rgba(168, 85, 247, 0.6) 100%);
+    transform: scale(0.95);
+  }
+`;
+
 const Overlay = styled.div<{ $show: boolean }>`
   position: fixed;
   top: 0;
@@ -258,6 +290,14 @@ export default function Home() {
         <SidePanel>
           <ScorePanel gameState={gameState} />
           <NextPiecePreview nextPiece={gameState.nextPiece} />
+          <MobileGameControls>
+            <MobileButton onClick={togglePause}>
+              {gameState.isPaused ? '▶ Resume' : '⏸ Pause'}
+            </MobileButton>
+            <MobileButton onClick={toggleGhost}>
+              {gameState.showGhost ? '👻 Ghost ON' : '👁 Ghost OFF'}
+            </MobileButton>
+          </MobileGameControls>
         </SidePanel>
 
         <div style={{ position: "relative" }}>
@@ -312,8 +352,6 @@ export default function Home() {
         onMoveDown={() => movePiece(0, 1)}
         onRotate={rotate}
         onHardDrop={hardDrop}
-        onPause={togglePause}
-        onToggleGhost={toggleGhost}
       />
     </Container>
   );

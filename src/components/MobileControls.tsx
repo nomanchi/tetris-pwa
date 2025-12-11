@@ -9,7 +9,7 @@ const ControlsContainer = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 16px;
+  padding: 16px 8px;
   background: linear-gradient(180deg, transparent 0%, rgba(10, 10, 31, 0.95) 20%);
   backdrop-filter: blur(10px);
   z-index: 100;
@@ -21,39 +21,21 @@ const ControlsContainer = styled.div`
 
 const ControlsGrid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
+  grid-template-columns: 80px 1fr 80px;
+  gap: 12px;
   max-width: 600px;
   margin: 0 auto;
-`;
-
-const DPadContainer = styled.div`
-  display: flex;
   align-items: center;
-  justify-content: center;
 `;
 
-const DPad = styled.div`
-  position: relative;
-  width: 160px;
-  height: 160px;
-  display: grid;
-  grid-template-areas:
-    ". up ."
-    "left center right"
-    ". down .";
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  gap: 4px;
-`;
-
-const DPadButton = styled.button<{ $area: string }>`
-  grid-area: ${(props) => props.$area};
+const SideButton = styled.button`
+  width: 80px;
+  height: 80px;
   background: linear-gradient(135deg, rgba(99, 102, 241, 0.3) 0%, rgba(168, 85, 247, 0.3) 100%);
   border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: 12px;
   color: white;
-  font-size: 24px;
+  font-size: 32px;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.1s ease;
@@ -67,39 +49,26 @@ const DPadButton = styled.button<{ $area: string }>`
     transform: scale(0.95);
     box-shadow: 0 0 20px rgba(99, 102, 241, 0.6);
   }
-
-  ${(props) => props.$area === "center" && `
-    background: transparent;
-    border: none;
-    cursor: default;
-    pointer-events: none;
-  `}
 `;
 
-const ActionsContainer = styled.div`
+const CenterButtons = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 12px;
+  flex-direction: row;
+  gap: 8px;
   justify-content: center;
 `;
 
-const ActionRow = styled.div`
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-`;
-
-const ActionButton = styled.button<{ $primary?: boolean; $size?: string }>`
-  min-width: ${(props) => props.$size === "large" ? "140px" : "60px"};
-  height: ${(props) => props.$size === "large" ? "60px" : "48px"};
+const CenterButton = styled.button<{ $primary?: boolean }>`
+  flex: 1;
+  height: 70px;
   background: ${(props) =>
     props.$primary
       ? "linear-gradient(135deg, #6366f1 0%, #a855f7 100%)"
       : "linear-gradient(135deg, rgba(99, 102, 241, 0.3) 0%, rgba(168, 85, 247, 0.3) 100%)"};
   border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
+  border-radius: 10px;
   color: white;
-  font-size: ${(props) => props.$size === "large" ? "16px" : "13px"};
+  font-size: 14px;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.1s ease;
@@ -109,11 +78,15 @@ const ActionButton = styled.button<{ $primary?: boolean; $size?: string }>`
   touch-action: manipulation;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   box-shadow: ${(props) =>
     props.$primary ? "0 4px 20px rgba(99, 102, 241, 0.4)" : "none"};
 
   &:active {
-    transform: scale(0.95);
+    transform: scale(0.98);
     box-shadow: ${(props) =>
       props.$primary
         ? "0 6px 28px rgba(99, 102, 241, 0.6)"
@@ -127,8 +100,6 @@ interface MobileControlsProps {
   onMoveDown: () => void;
   onRotate: () => void;
   onHardDrop: () => void;
-  onPause: () => void;
-  onToggleGhost: () => void;
 }
 
 export default function MobileControls({
@@ -137,8 +108,6 @@ export default function MobileControls({
   onMoveDown,
   onRotate,
   onHardDrop,
-  onPause,
-  onToggleGhost,
 }: MobileControlsProps) {
   const [isMobile, setIsMobile] = useState(false);
 
@@ -172,66 +141,44 @@ export default function MobileControls({
   return (
     <ControlsContainer>
       <ControlsGrid>
-        <DPadContainer>
-          <DPad>
-            <DPadButton
-              $area="up"
-              onTouchStart={handleTouch(onRotate)}
-              onMouseDown={handleMouse(onRotate)}
-            >
-              ↑
-            </DPadButton>
-            <DPadButton
-              $area="left"
-              onTouchStart={handleTouch(onMoveLeft)}
-              onMouseDown={handleMouse(onMoveLeft)}
-            >
-              ←
-            </DPadButton>
-            <DPadButton $area="center" />
-            <DPadButton
-              $area="right"
-              onTouchStart={handleTouch(onMoveRight)}
-              onMouseDown={handleMouse(onMoveRight)}
-            >
-              →
-            </DPadButton>
-            <DPadButton
-              $area="down"
-              onTouchStart={handleTouch(onMoveDown)}
-              onMouseDown={handleMouse(onMoveDown)}
-            >
-              ↓
-            </DPadButton>
-          </DPad>
-        </DPadContainer>
+        {/* Left: Move Left */}
+        <SideButton
+          onTouchStart={handleTouch(onMoveLeft)}
+          onMouseDown={handleMouse(onMoveLeft)}
+        >
+          ←
+        </SideButton>
 
-        <ActionsContainer>
-          <ActionRow>
-            <ActionButton
-              $primary
-              $size="large"
-              onTouchStart={handleTouch(onHardDrop)}
-              onMouseDown={handleMouse(onHardDrop)}
-            >
-              DROP
-            </ActionButton>
-          </ActionRow>
-          <ActionRow>
-            <ActionButton
-              onTouchStart={handleTouch(onPause)}
-              onMouseDown={handleMouse(onPause)}
-            >
-              ⏸
-            </ActionButton>
-            <ActionButton
-              onTouchStart={handleTouch(onToggleGhost)}
-              onMouseDown={handleMouse(onToggleGhost)}
-            >
-              👻
-            </ActionButton>
-          </ActionRow>
-        </ActionsContainer>
+        {/* Center: Rotate, Down, Drop */}
+        <CenterButtons>
+          <CenterButton
+            onTouchStart={handleTouch(onRotate)}
+            onMouseDown={handleMouse(onRotate)}
+          >
+            ↻ Rotate
+          </CenterButton>
+          <CenterButton
+            onTouchStart={handleTouch(onMoveDown)}
+            onMouseDown={handleMouse(onMoveDown)}
+          >
+            ↓ Soft Drop
+          </CenterButton>
+          <CenterButton
+            $primary
+            onTouchStart={handleTouch(onHardDrop)}
+            onMouseDown={handleMouse(onHardDrop)}
+          >
+            DROP
+          </CenterButton>
+        </CenterButtons>
+
+        {/* Right: Move Right */}
+        <SideButton
+          onTouchStart={handleTouch(onMoveRight)}
+          onMouseDown={handleMouse(onMoveRight)}
+        >
+          →
+        </SideButton>
       </ControlsGrid>
     </ControlsContainer>
   );

@@ -71,19 +71,19 @@ const Cell = styled.div<{ $color?: string; $isGhost?: boolean }>`
     }
   `}
 
-  @media (max-width: 768px) {
-    width: 18px;
-    height: 18px;
-  }
-
   @media (max-width: 400px) {
-    width: 14px;
-    height: 14px;
+    width: 20px;
+    height: 20px;
   }
 
-  @media (max-width: 350px) {
-    width: 12px;
-    height: 12px;
+  @media (max-width: 300px) {
+    width: 15px;
+    height: 15px;
+  }
+
+  @media (max-width: 250px) {
+    width: 13px;
+    height: 13px;
   }
 `;
 
