@@ -69,7 +69,7 @@ export default function Controls() {
           <Description>Soft drop</Description>
         </ControlItem>
         <ControlItem>
-          <Key>A</Key>
+          <Key>SPACE</Key>
           <Description>Hard drop</Description>
         </ControlItem>
         <ControlItem>

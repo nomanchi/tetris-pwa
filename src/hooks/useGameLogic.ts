@@ -233,6 +233,7 @@ export function useGameLogic() {
           e.preventDefault();
           movePiece(0, 1);
           break;
+        case " ":
         case "a":
         case "A":
           e.preventDefault();
@@ -285,5 +286,9 @@ export function useGameLogic() {
     startGame,
     restart,
     togglePause,
+    movePiece,
+    rotate,
+    hardDrop,
+    toggleGhost,
   };
 }

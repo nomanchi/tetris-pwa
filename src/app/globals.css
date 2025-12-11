@@ -58,3 +58,25 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #7c3aed;
 }
+
+/* Mobile touch optimization */
+@media (max-width: 768px) {
+  body {
+    overscroll-behavior: none;
+    touch-action: pan-y;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  /* Prevent pull-to-refresh */
+  html, body {
+    overscroll-behavior-y: contain;
+  }
+}
+
+/* Prevent text selection during touch */
+button, .controls {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}

@@ -6,6 +6,7 @@ import GameBoard from "@/components/GameBoard";
 import NextPiecePreview from "@/components/NextPiecePreview";
 import ScorePanel from "@/components/ScorePanel";
 import Controls from "@/components/Controls";
+import MobileControls from "@/components/MobileControls";
 
 const Container = styled.div`
   min-height: 100vh;
@@ -14,8 +15,15 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   padding: 20px;
+  padding-bottom: 200px;
   position: relative;
   overflow: hidden;
+
+  @media (max-width: 768px) {
+    padding: 16px;
+    padding-bottom: 220px;
+    justify-content: flex-start;
+  }
 
   &::before {
     content: "";
@@ -79,12 +87,27 @@ const GameContainer = styled.div`
   z-index: 1;
   flex-wrap: wrap;
   justify-content: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
 `;
 
 const SidePanel = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: 400px;
+
+    &:last-child {
+      display: none;
+    }
+  }
 `;
 
 const Overlay = styled.div<{ $show: boolean }>`
@@ -200,7 +223,7 @@ const PauseIndicator = styled.div<{ $show: boolean }>`
 `;
 
 export default function Home() {
-  const { gameState, isPlaying, startGame, restart, togglePause } = useGameLogic();
+  const { gameState, isPlaying, startGame, restart, togglePause, movePiece, rotate, hardDrop, toggleGhost } = useGameLogic();
 
   return (
     <Container>
@@ -259,6 +282,17 @@ export default function Home() {
           </ButtonGroup>
         </Modal>
       </Overlay>
+
+      {/* Mobile Controls */}
+      <MobileControls
+        onMoveLeft={() => movePiece(-1, 0)}
+        onMoveRight={() => movePiece(1, 0)}
+        onMoveDown={() => movePiece(0, 1)}
+        onRotate={rotate}
+        onHardDrop={hardDrop}
+        onPause={togglePause}
+        onToggleGhost={toggleGhost}
+      />
     </Container>
   );
 }
