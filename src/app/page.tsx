@@ -20,9 +20,11 @@ const Container = styled.div`
   overflow: hidden;
 
   @media (max-width: 768px) {
-    padding: 16px;
-    padding-bottom: 220px;
+    padding: 8px 8px 180px 8px;
     justify-content: flex-start;
+    min-height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
   }
 
   &::before {
@@ -57,6 +59,10 @@ const Header = styled.header`
   margin-bottom: 32px;
   position: relative;
   z-index: 1;
+
+  @media (max-width: 768px) {
+    margin-bottom: 16px;
+  }
 `;
 
 const Title = styled.h1`
@@ -69,6 +75,11 @@ const Title = styled.h1`
   background-clip: text;
   text-shadow: 0 0 40px rgba(99, 102, 241, 0.5);
   letter-spacing: -1px;
+
+  @media (max-width: 768px) {
+    font-size: 32px;
+    margin: 0;
+  }
 `;
 
 const Subtitle = styled.p`
@@ -77,6 +88,12 @@ const Subtitle = styled.p`
   margin: 0;
   letter-spacing: 2px;
   text-transform: uppercase;
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+    margin-top: 4px;
+    display: block;
+  }
 `;
 
 const GameContainer = styled.div`
@@ -89,9 +106,20 @@ const GameContainer = styled.div`
   justify-content: center;
 
   @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    align-items: flex-start;
     gap: 16px;
+    width: 100%;
+    max-width: 100%;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding: 0 8px;
+    -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
+    scrollbar-width: none; /* Firefox */
+    &::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera */
+    }
   }
 `;
 
@@ -101,8 +129,9 @@ const SidePanel = styled.div`
   gap: 20px;
 
   @media (max-width: 768px) {
-    width: 100%;
-    max-width: 400px;
+    flex: 0 0 auto;
+    width: auto;
+    gap: 8px;
 
     &:last-child {
       display: none;
@@ -229,7 +258,7 @@ export default function Home() {
     <Container>
       <Header>
         <Title>TETRIS</Title>
-        <Subtitle>Progressive Web App</Subtitle>
+        <Subtitle>By JES with AntiGravity</Subtitle>
       </Header>
 
       <GameContainer>

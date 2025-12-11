@@ -10,6 +10,11 @@ const PreviewContainer = styled.div`
   border: 2px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(10px);
+
+  @media (max-width: 768px) {
+    padding: 8px;
+    border-radius: 8px;
+  }
 `;
 
 const Title = styled.h3`
@@ -19,6 +24,12 @@ const Title = styled.h3`
   color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 1px;
+
+  @media (max-width: 768px) {
+    margin: 0 0 6px 0;
+    font-size: 9px;
+    letter-spacing: 0.5px;
+  }
 `;
 
 const PieceGrid = styled.div<{ $size: number }>`
@@ -28,6 +39,12 @@ const PieceGrid = styled.div<{ $size: number }>`
   gap: 1px;
   justify-content: center;
   padding: 8px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(${(props) => props.$size}, 12px);
+    grid-template-rows: repeat(${(props) => props.$size}, 12px);
+    padding: 4px;
+  }
 `;
 
 const Cell = styled.div<{ $color?: string }>`
@@ -55,6 +72,11 @@ const Cell = styled.div<{ $color?: string }>`
       border-radius: 1px;
     }
   `}
+
+  @media (max-width: 768px) {
+    width: 12px;
+    height: 12px;
+  }
 `;
 
 interface NextPiecePreviewProps {

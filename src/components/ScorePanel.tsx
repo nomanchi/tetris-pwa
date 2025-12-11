@@ -13,6 +13,12 @@ const PanelContainer = styled.div`
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(10px);
   min-width: 200px;
+
+  @media (max-width: 768px) {
+    padding: 8px;
+    min-width: 100px;
+    border-radius: 8px;
+  }
 `;
 
 const StatRow = styled.div`
@@ -24,6 +30,10 @@ const StatRow = styled.div`
   &:last-child {
     margin-bottom: 0;
   }
+
+  @media (max-width: 768px) {
+    margin-bottom: 6px;
+  }
 `;
 
 const StatLabel = styled.div`
@@ -32,6 +42,11 @@ const StatLabel = styled.div`
   color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.5px;
+
+  @media (max-width: 768px) {
+    font-size: 9px;
+    letter-spacing: 0.3px;
+  }
 `;
 
 const StatValue = styled.div<{ $highlight?: boolean }>`
@@ -41,6 +56,10 @@ const StatValue = styled.div<{ $highlight?: boolean }>`
   text-shadow: ${(props) =>
     props.$highlight ? "0 0 10px var(--primary-glow)" : "none"};
   font-variant-numeric: tabular-nums;
+
+  @media (max-width: 768px) {
+    font-size: ${(props) => (props.$highlight ? "14px" : "12px")};
+  }
 `;
 
 const Divider = styled.div`
@@ -52,6 +71,10 @@ const Divider = styled.div`
     transparent 100%
   );
   margin: 16px 0;
+
+  @media (max-width: 768px) {
+    margin: 6px 0;
+  }
 `;
 
 const ComboIndicator = styled.div<{ $active: boolean }>`
@@ -70,6 +93,12 @@ const ComboIndicator = styled.div<{ $active: boolean }>`
   transition: all 0.3s ease;
   box-shadow: ${(props) =>
     props.$active ? "0 0 20px rgba(245, 158, 11, 0.5)" : "none"};
+
+  @media (max-width: 768px) {
+    padding: 4px 8px;
+    font-size: 8px;
+    border-radius: 6px;
+  }
 `;
 
 interface ScorePanelProps {
