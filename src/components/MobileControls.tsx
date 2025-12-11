@@ -155,7 +155,16 @@ export default function MobileControls({
 
   if (!isMobile) return null;
 
-  const handleTouchStart = (callback: () => void) => (e: React.TouchEvent | React.MouseEvent) => {
+  // Separate handlers to prevent double-firing
+  const handleTouch = (callback: () => void) => (e: React.TouchEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    callback();
+  };
+
+  const handleMouse = (callback: () => void) => (e: React.MouseEvent) => {
+    // Only respond to mouse events if there's no touch support
+    if ('ontouchstart' in window) return;
     e.preventDefault();
     callback();
   };
@@ -167,30 +176,30 @@ export default function MobileControls({
           <DPad>
             <DPadButton
               $area="up"
-              onTouchStart={handleTouchStart(onRotate)}
-              onMouseDown={handleTouchStart(onRotate)}
+              onTouchStart={handleTouch(onRotate)}
+              onMouseDown={handleMouse(onRotate)}
             >
               ↑
             </DPadButton>
             <DPadButton
               $area="left"
-              onTouchStart={handleTouchStart(onMoveLeft)}
-              onMouseDown={handleTouchStart(onMoveLeft)}
+              onTouchStart={handleTouch(onMoveLeft)}
+              onMouseDown={handleMouse(onMoveLeft)}
             >
               ←
             </DPadButton>
             <DPadButton $area="center" />
             <DPadButton
               $area="right"
-              onTouchStart={handleTouchStart(onMoveRight)}
-              onMouseDown={handleTouchStart(onMoveRight)}
+              onTouchStart={handleTouch(onMoveRight)}
+              onMouseDown={handleMouse(onMoveRight)}
             >
               →
             </DPadButton>
             <DPadButton
               $area="down"
-              onTouchStart={handleTouchStart(onMoveDown)}
-              onMouseDown={handleTouchStart(onMoveDown)}
+              onTouchStart={handleTouch(onMoveDown)}
+              onMouseDown={handleMouse(onMoveDown)}
             >
               ↓
             </DPadButton>
@@ -202,22 +211,22 @@ export default function MobileControls({
             <ActionButton
               $primary
               $size="large"
-              onTouchStart={handleTouchStart(onHardDrop)}
-              onMouseDown={handleTouchStart(onHardDrop)}
+              onTouchStart={handleTouch(onHardDrop)}
+              onMouseDown={handleMouse(onHardDrop)}
             >
               DROP
             </ActionButton>
           </ActionRow>
           <ActionRow>
             <ActionButton
-              onTouchStart={handleTouchStart(onPause)}
-              onMouseDown={handleTouchStart(onPause)}
+              onTouchStart={handleTouch(onPause)}
+              onMouseDown={handleMouse(onPause)}
             >
               ⏸
             </ActionButton>
             <ActionButton
-              onTouchStart={handleTouchStart(onToggleGhost)}
-              onMouseDown={handleTouchStart(onToggleGhost)}
+              onTouchStart={handleTouch(onToggleGhost)}
+              onMouseDown={handleMouse(onToggleGhost)}
             >
               👻
             </ActionButton>

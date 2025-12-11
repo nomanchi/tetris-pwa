@@ -13,6 +13,15 @@ const BoardContainer = styled.div`
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
               inset 0 0 40px rgba(99, 102, 241, 0.1);
   backdrop-filter: blur(10px);
+
+  @media (max-width: 768px) {
+    padding: 6px;
+    border-radius: 8px;
+  }
+
+  @media (max-width: 400px) {
+    padding: 4px;
+  }
 `;
 
 const Grid = styled.div`
@@ -61,6 +70,21 @@ const Cell = styled.div<{ $color?: string; $isGhost?: boolean }>`
       pointer-events: none;
     }
   `}
+
+  @media (max-width: 768px) {
+    width: 18px;
+    height: 18px;
+  }
+
+  @media (max-width: 400px) {
+    width: 14px;
+    height: 14px;
+  }
+
+  @media (max-width: 350px) {
+    width: 12px;
+    height: 12px;
+  }
 `;
 
 interface GameBoardProps {

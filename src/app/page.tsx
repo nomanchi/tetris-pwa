@@ -108,18 +108,11 @@ const GameContainer = styled.div`
   @media (max-width: 768px) {
     flex-direction: row;
     align-items: flex-start;
-    gap: 16px;
+    gap: 4px;
     width: 100%;
     max-width: 100%;
     flex-wrap: nowrap;
-    overflow-x: auto;
-    justify-content: flex-start;
-    padding: 0 8px;
-    -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
-    scrollbar-width: none; /* Firefox */
-    &::-webkit-scrollbar {
-      display: none; /* Chrome, Safari, Opera */
-    }
+    justify-content: space-between;
   }
 `;
 
@@ -131,7 +124,7 @@ const SidePanel = styled.div`
   @media (max-width: 768px) {
     flex: 0 0 auto;
     width: auto;
-    gap: 8px;
+    gap: 4px;
 
     &:last-child {
       display: none;
