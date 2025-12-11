@@ -29,7 +29,7 @@ const Grid = styled.div`
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(20, 1fr);
   gap: 1px;
-  background: rgba(0, 0, 0, 0.3);
+  background: #0d0d0d;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
@@ -41,15 +41,15 @@ const Cell = styled.div<{ $color?: string; $isGhost?: boolean }>`
   background: ${(props) =>
     props.$isGhost
       ? `${props.$color}40`
-      : props.$color || "#0a0a1f"} !important;
+      : props.$color || "#1a1a1a"} !important;
   border: ${(props) =>
     props.$color
       ? `1px solid ${props.$isGhost ? `${props.$color}60` : `${props.$color}dd`}`
-      : "1px solid rgba(255, 255, 255, 0.05)"};
+      : "1px solid #2a2a2a"};
   box-shadow: ${(props) =>
     props.$color && !props.$isGhost
       ? `inset 0 0 6px ${props.$color}aa, 0 0 4px ${props.$color}44`
-      : "none"};
+      : "inset 0 1px 0 rgba(255,255,255,0.05)"};
   transition: all 0.1s ease;
 
   ${(props) =>
