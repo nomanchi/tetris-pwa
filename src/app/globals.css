@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+html {
+  color-scheme: light only;
+}
+
 :root {
   /* Colors */
   --bg-primary: #0a0a1f;
