@@ -68,7 +68,7 @@ const CenterButton = styled.button<{ $primary?: boolean }>`
   border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: 10px;
   color: white;
-  font-size: 14px;
+  font-size: 28px;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.1s ease;
@@ -155,20 +155,20 @@ export default function MobileControls({
             onTouchStart={handleTouch(onRotate)}
             onMouseDown={handleMouse(onRotate)}
           >
-            ↻ Rotate
+            ↻
           </CenterButton>
           <CenterButton
             onTouchStart={handleTouch(onMoveDown)}
             onMouseDown={handleMouse(onMoveDown)}
           >
-            ↓ Soft Drop
+            ↓
           </CenterButton>
           <CenterButton
             $primary
             onTouchStart={handleTouch(onHardDrop)}
             onMouseDown={handleMouse(onHardDrop)}
           >
-            DROP
+            ⬇
           </CenterButton>
         </CenterButtons>
 

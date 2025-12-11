@@ -301,7 +301,7 @@ export default function Home() {
         </SidePanel>
 
         <div style={{ position: "relative" }}>
-          <GameBoard gameState={gameState} />
+          <GameBoard gameState={isPlaying ? gameState : { ...gameState, currentPiece: null }} />
           <PauseIndicator $show={gameState.isPaused && !gameState.gameOver}>
             PAUSED
           </PauseIndicator>

@@ -41,11 +41,11 @@ const Cell = styled.div<{ $color?: string; $isGhost?: boolean }>`
   background: ${(props) =>
     props.$isGhost
       ? `${props.$color}40`
-      : props.$color || "rgba(10, 10, 31, 0.8)"};
+      : props.$color || "#0a0a1f"} !important;
   border: ${(props) =>
     props.$color
       ? `1px solid ${props.$isGhost ? `${props.$color}60` : `${props.$color}dd`}`
-      : "none"};
+      : "1px solid rgba(255, 255, 255, 0.05)"};
   box-shadow: ${(props) =>
     props.$color && !props.$isGhost
       ? `inset 0 0 6px ${props.$color}aa, 0 0 4px ${props.$color}44`
