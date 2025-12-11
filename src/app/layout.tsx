@@ -30,8 +30,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" style={{ colorScheme: "light" }}>
+      <head>
+        <meta name="color-scheme" content="light" />
+      </head>
+      <body className={inter.className} style={{ colorScheme: "light" }}>
         <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
       </body>
     </html>
