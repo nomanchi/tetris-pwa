@@ -252,7 +252,7 @@ export function initializeGame(): GameState {
     gameOver: false,
     isPaused: false,
     combo: 0,
-    startTime: Date.now(),
+    startTime: 0,
     showGhost: true,
   };
 }

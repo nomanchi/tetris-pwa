@@ -111,7 +111,8 @@ export default function ScorePanel({ gameState }: ScorePanelProps) {
 
   // Update elapsed time every second
   useEffect(() => {
-    if (gameState.gameOver || gameState.isPaused) return;
+    // Don't start timer if game hasn't started yet
+    if (gameState.startTime === 0 || gameState.gameOver || gameState.isPaused) return;
 
     const interval = setInterval(() => {
       setElapsedTime(Math.floor((Date.now() - gameState.startTime) / 1000));

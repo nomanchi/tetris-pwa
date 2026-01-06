@@ -202,12 +202,20 @@ export function useGameLogic() {
 
   // Restart game
   const restart = () => {
-    setGameState(initializeGame());
+    const newGameState = initializeGame();
+    setGameState({
+      ...newGameState,
+      startTime: Date.now(),
+    });
     setIsPlaying(true);
   };
 
   // Start game
   const startGame = () => {
+    setGameState((prev) => ({
+      ...prev,
+      startTime: Date.now(),
+    }));
     setIsPlaying(true);
   };
 
