@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   initializeGame,
+  createEmptyGameState,
   checkCollision,
   mergePiece,
   clearLines,
@@ -16,10 +17,20 @@ import {
 import { Position, GameState } from "@/types/types";
 
 export function useGameLogic() {
-  const [gameState, setGameState] = useState<GameState>(initializeGame());
+  // Initialize with empty state to avoid SSR hydration mismatch
+  const [gameState, setGameState] = useState<GameState>(createEmptyGameState());
   const [isPlaying, setIsPlaying] = useState(false);
   const dropTimerRef = useRef<NodeJS.Timeout | null>(null);
   const lastDropTimeRef = useRef<number>(Date.now());
+  const [isInitialized, setIsInitialized] = useState(false);
+
+  // Initialize game state on client side only to avoid hydration mismatch
+  useEffect(() => {
+    if (!isInitialized) {
+      setGameState(initializeGame());
+      setIsInitialized(true);
+    }
+  }, [isInitialized]);
 
   // Move piece
   const movePiece = useCallback(

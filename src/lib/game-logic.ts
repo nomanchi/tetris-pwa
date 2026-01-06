@@ -235,6 +235,26 @@ export function getHardDropPosition(
   return dropPosition;
 }
 
+// Create empty game state (for SSR to avoid hydration mismatch)
+export function createEmptyGameState(): GameState {
+  const board = createBoard();
+
+  return {
+    board,
+    currentPiece: null,
+    currentPosition: { x: Math.floor(BOARD_WIDTH / 2) - 1, y: 0 },
+    nextPiece: null,
+    score: 0,
+    lines: 0,
+    level: 0,
+    gameOver: false,
+    isPaused: false,
+    combo: 0,
+    startTime: 0,
+    showGhost: true,
+  };
+}
+
 // Initialize game state
 export function initializeGame(): GameState {
   const board = createBoard();
