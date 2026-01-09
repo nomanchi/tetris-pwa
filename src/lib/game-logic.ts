@@ -32,7 +32,7 @@ const TETROMINOES: Record<TetrominoType, { shape: number[][]; color: string }> =
     shape: [
       [1, 1, 1],
       [0, 1, 0],
-      [0, 1, 0],
+      [0, 0, 0],
     ],
     color: "#a000f0",
   },
